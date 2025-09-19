@@ -42,12 +42,32 @@ def get_user_by_api_key(api_key: str) -> Optional[Dict]:
     Returns:
         The user data dictionary if found, None otherwise
     """
+    # Simple user database with API keys
+    users = {
+    "felix": {
+        "api_key": "password123",
+        "full_name": "Felix Kewa",
+        "role": "admin"
+    },
+    "alice": {
+        "api_key": "alicepass456",
+        "full_name": "Alice Johnson",
+        "role": "developer"
+    },
+    "bob": {
+        "api_key": "bobsecret789",
+        "full_name": "Bob Smith",
+        "role": "viewer"
+    }
+    }
+    
     if api_key not in api_key_to_user:
         return None
     
     username = api_key_to_user[api_key]
     return {
         "username": username,
+        "role": users[username]['role'],
         **users[username]
     }
 
